@@ -1,6 +1,7 @@
 import Vue from "vue";
 import SearchLesson from "./SearchLesson.vue";
 import store from "./store";
+import "bootstrap/dist/css/bootstrap.css";
 
 Vue.config.productionTip = false;
 

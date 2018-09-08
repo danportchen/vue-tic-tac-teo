@@ -1,8 +1,14 @@
 <template>
   <div>
-    <input type="text" v-model="text"/>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
+      </div>
+      <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" v-model="text" />
+    </div>
+   
     <div class="lesson-list">
-      <div class="lesson" v-for="lesson in lessons" :key="lesson">
+      <div class="lesson" v-for="(lesson,idx) in lessons" :key="idx">{{idx}}
         <img :src="lesson.cover"/>
         <span>{{ lesson.title }}</span>
         <label>{{ lesson.owner.username}}</label>
@@ -12,6 +18,7 @@
 </template>
 <script>
 import debounce from 'lodash/debounce';
+
   const SEARCH_API = 'https://hiskio.com/api/v1/courses/search?word=';
   export default{
     data(){
@@ -35,7 +42,7 @@ import debounce from 'lodash/debounce';
       },
     },
     created(){
-      this.searchDebounced = debounce(this.search, 50);
+      this.searchDebounced = debounce(this.search, 500);
     },
   }
 </script>
