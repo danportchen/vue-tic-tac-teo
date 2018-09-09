@@ -6,7 +6,7 @@ export default {
   props: ["number"],
   data() {
     return {
-      visibleNumber: this.number,
+      visibleNumber: this.number
     };
   },
   methods: {
