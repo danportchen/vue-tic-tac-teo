@@ -17,40 +17,41 @@
   </div>
 </template>
 <script>
-import debounce from 'lodash/debounce';
+import debounce from "lodash/debounce";
 
-  const SEARCH_API = 'https://hiskio.com/api/v1/courses/search?word=';
-  export default{
-    data(){
-      return {
-        text: '',
-        lesson: [],
-      };
-    },
-    methods:{
-      search(val){
-        fetch(`${SEARCH_API}${val}`)
+const SEARCH_API = "https://hiskio.com/api/v1/courses/search?word=";
+export default {
+  data() {
+    return {
+      text: "",
+      lesson: []
+    };
+  },
+  methods: {
+    search(val) {
+      fetch(`${SEARCH_API}${val}`)
         .then(rs => rs.json())
         .then(data => {
           this.lessons = data.courses;
         });
-      },
-    },
-    watch:{
-      text(val){
-        this.searchDebounced(val);
-      },
-    },
-    created(){
-      this.searchDebounced = debounce(this.search, 500);
-    },
+    }
+  },
+  watch: {
+    text(val) {
+      this.searchDebounced(val);
+    }
+  },
+  created() {
+    this.searchDebounced = debounce(this.search, 500);
   }
+};
 </script>
 <style>
 .lesson img {
   width: 100px;
 }
-.lesson span, .lesson label {
+.lesson span,
+.lesson label {
   display: block;
 }
 </style>
